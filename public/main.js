@@ -23,6 +23,12 @@ function hello (text) {
 	return 'Привет, ' + text;
 }
 
+function plural (number) {
+	Components.utils.import("resource://gre/modules/PluralForm.jsm");
+	let words = 'отправка;отправки;отправок';
+	return PluralForm.get(number, words);
+}
+
 if (typeof exports === 'object') {
 	exports.hello = hello;
 }
