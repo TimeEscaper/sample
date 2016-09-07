@@ -1,6 +1,7 @@
 let express = require('express');
 let technologger = require('technologger');
 let parser = require('body-parser');
+let plural = require('./public/main').plural;
 let app = express();
 let mailBase = {};
 
@@ -16,7 +17,8 @@ app.post('/users', (req, res) => {
         mailBase[req.body.email] = 1;
     else
         mailBase[req.body.email]++;
-    console.log(mailBase[req.body.email]);
+    console.log(mailBase[req.body.email] + " " + plural("отправка;отправки;отправок", mailBase[req.body.email]) +
+        " для e-mail " + req.body.email);
 });
 
 app.listen(process.env.PORT || 3000, () => {
